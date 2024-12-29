@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount, type Ref } from 'vue';
-import { useAudio, ji5LimitModesFreqRatios, ji7LimitModesFreqRatios } from '@/composables/useAudio'
+import { useAudio } from '@/composables/useAudio'
+import { C4, ji5LimitModesFreqRatios, ji7LimitModesFreqRatios } from '@/composables/constants'
 
 const pristine = ref(true)
 const notes: Ref<string[]> = ref([])
@@ -22,30 +23,26 @@ const intervals: Ref = ref([
   'NaturalMinor'
 ])
 
-const C4 = 261.63;
-
-const { oscillator, gainNode, initialize } = useAudio({
-  frequency: C4
-})
+const { initialize, play } = useAudio()
 
 const eventKeys = "QWERTYUI".split("").map(_ => `Key${_}`);
 const handleKeyDown = ({ code }: { code: string }) => {
   const interval = definedInterval.value
   const found = eventKeys.indexOf(code);
+  const isPlaying: number = notes.value.indexOf(code)
   const toneKey = Object.keys(interval)[found];
   const factor = interval[toneKey];
 
-  if (found > -1) {
-    clearKey(code)
+  if (found > -1 && isPlaying == -1) {
     notes.value.push(code)
-    gainNode.gain.value = 1
-    oscillator.frequency.value = C4 * factor;
+    // gainNode.gain.value = 1
+    play(C4 * factor)
   }
 }
 const handleKeyUp = ({ code }: { code: string }) => {
   clearKey(code)
 
-  gainNode.gain.value = 0
+  // gainNode.gain.value = 0
 }
 
 const clearKey = (code: string) => {
@@ -72,7 +69,6 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  oscillator.stop()
   document.removeEventListener("keydown", handleKeyDown)
   document.removeEventListener("keyup", handleKeyUp)
 });
