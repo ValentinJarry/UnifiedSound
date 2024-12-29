@@ -1,12 +1,16 @@
-import { AudioContext } from 'standardized-audio-context'
+// import { AudioContext } from 'standardized-audio-context'
 
 export const useAudio = () => {
   const start = () => {
-    const audioContext = new AudioContext()
-    const oscillatorNode = audioContext.createOscillator()
-    oscillatorNode.connect(audioContext.destination)
+    const audioCtx = new window.AudioContext()
 
-    oscillatorNode.start()
+    const oscillator = audioCtx.createOscillator()
+    const gainNode = audioCtx.createGain()
+
+    oscillator.connect(gainNode)
+    gainNode.connect(audioCtx.destination)
+
+    oscillator.start()
   }
 
   return {

@@ -14,7 +14,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "standardized-audio-context": "^25.3.77",
+    "three": "^0.171.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
@@ -34,7 +34,6 @@
     "jsdom": "^25.0.1",
     "npm-run-all2": "^7.0.2",
     "prettier": "^3.3.3",
-    "three": "^0.171.0",
     "typescript": "~5.6.3",
     "vite": "^6.0.5",
     "vite-plugin-vue-devtools": "^7.6.8",
