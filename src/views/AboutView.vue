@@ -93,10 +93,10 @@ onBeforeUnmount(() => {
       </div>
       <div class="keyboard">
         <div :class="['key', { active: notes.indexOf(key) > -1 }]" v-for="(key, i) in eventKeys" :key="key">
-          <span>{{ Object.keys(definedInterval)[i] }}</span>
-          <span>{{ +definedInterval[Object.keys(definedInterval)[i]].toFixed(5)
+          <span class="title">{{ Object.keys(definedInterval)[i] }}</span>
+          <span class="details">{{ +definedInterval[Object.keys(definedInterval)[i]].toFixed(5)
             }}</span>
-          <span>{{ +(definedInterval[Object.keys(definedInterval)[i]] * C4).toFixed(5) }}</span>
+          <span class="details">{{ +(definedInterval[Object.keys(definedInterval)[i]] * C4).toFixed(5) }}</span>
         </div>
       </div>
     </div>
@@ -137,10 +137,22 @@ button {
   height: 120px;
   background-color: #affec7;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   color: rgba(0, 0, 0, 0.25);
   flex-direction: column;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.title {
+  margin-bottom: auto;
+  align-self: flex-start;
+}
+
+.details {
+  color: rgba(0, 0, 0, 0.75);
+
 }
 
 .key.active {
