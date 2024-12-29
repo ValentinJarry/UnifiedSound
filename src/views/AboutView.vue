@@ -35,14 +35,11 @@ const handleKeyDown = ({ code }: { code: string }) => {
 
   if (found > -1 && isPlaying == -1) {
     notes.value.push(code)
-    // gainNode.gain.value = 1
     play(C4 * factor)
   }
 }
 const handleKeyUp = ({ code }: { code: string }) => {
   clearKey(code)
-
-  // gainNode.gain.value = 0
 }
 
 const clearKey = (code: string) => {
