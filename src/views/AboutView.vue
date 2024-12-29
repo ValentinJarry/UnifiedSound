@@ -1,6 +1,12 @@
+<script setup lang="ts">
+import { useAudio } from '@/composables/useAudio'
+const { start } = useAudio()
+</script>
+
 <template>
   <div class="about">
     <h1>This is an about page</h1>
+    <button @click="start">start</button>
   </div>
 </template>
 
