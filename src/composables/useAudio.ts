@@ -1,5 +1,3 @@
-// import { AudioContext } from 'standardized-audio-context'
-
 export const useAudio = () => {
   const start = () => {
     const audioCtx = new window.AudioContext()
