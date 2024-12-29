@@ -20,15 +20,13 @@ const handleKeyDown = ({ code }: { code: string }) => {
   const factor = NaturalMajor[toneKey];
 
   if (found > -1) {
-    gainNode.gain.value = 1
     clearKey(code)
     notes.value.push(code)
+    gainNode.gain.value = 1
     oscillator.frequency.value = C4 * factor;
   }
 }
 const handleKeyUp = ({ code }: { code: string }) => {
-  console.log("keyup", code)
-
   clearKey(code)
 
   gainNode.gain.value = 0
@@ -36,7 +34,7 @@ const handleKeyUp = ({ code }: { code: string }) => {
 
 const clearKey = (code: string) => {
   const found = notes.value.indexOf(code)
-  if (found) {
+  if (found > -1) {
     notes.value.splice(found, 1);
   }
 }
@@ -66,7 +64,6 @@ onBeforeUnmount(() => {
       <div :class="['key', { active: notes.indexOf(key) > -1 }]" v-for="key in eventKeys" :key="key">
         {{ key }}
       </div>
-      <div>{{ notes }}</div>
     </div>
   </div>
 </template>
@@ -92,6 +89,14 @@ button {
 .key {
   width: 120px;
   height: 120px;
-  background-color: red;
+  background-color: #affec7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.key.active {
+  background-color: #ffffff;
 }
 </style>
