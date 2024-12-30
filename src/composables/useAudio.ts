@@ -7,8 +7,6 @@ const duration = 1
 export const useAudio = () => {
   const audioCtx = new window.AudioContext()
 
-  const initialize = () => {}
-
   const play = (frequency: number) => {
     const now = audioCtx.currentTime
     const oscillator = audioCtx.createOscillator()
@@ -29,7 +27,6 @@ export const useAudio = () => {
   }
 
   return {
-    initialize,
     play,
   }
 }

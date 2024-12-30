@@ -4,7 +4,6 @@ import { useAudio } from '@/composables/useAudio'
 import { useKeys, EVENT_KEYS } from '@/composables/useKeys'
 import { C4, ji5LimitModesFreqRatios, ji7LimitModesFreqRatios } from '@/composables/constants'
 
-const pristine = ref(true)
 const notes: Ref<string[]> = ref([])
 const currentMode: Ref<number> = ref(0)
 const currentInterval: Ref<string> = ref('NaturalMajor')
@@ -24,29 +23,24 @@ const intervals: Ref = ref([
   'NaturalMinor'
 ])
 
-const { initialize, play } = useAudio()
+const { play } = useAudio()
+
 const definedInterval = computed(() => {
   const localMode = modes.value[currentMode.value].value
   return localMode[currentInterval.value]
-
 })
+
 const { handleKeyDown, handleKeyUp } = useKeys({
   definedInterval,
   notes,
   play
 })
 
-const handleStart = () => {
-  pristine.value = false
-  initialize()
-}
-
 </script>
 
 <template>
   <div class="about">
-    <button @click="handleStart" v-if="pristine">start</button>
-    <div class="room" v-else>
+    <div class="room">
       <div class="controls">
         <select v-model="currentMode">
           <option v-for="({ label }, key) in modes" :value="key" :key="key">{{ label }}</option>
