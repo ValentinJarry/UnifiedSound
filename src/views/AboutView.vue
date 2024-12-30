@@ -7,7 +7,7 @@ import { FREQUENCIES, ji5LimitModesFreqRatios, ji7LimitModesFreqRatios } from '@
 const keys: Ref<string[]> = ref([])
 const currentMode: Ref<number> = ref(0)
 const currentInterval: Ref<string> = ref('NaturalMajor')
-const currentFrequency: Ref<string> = ref('A4')
+const currentFrequency: Ref<string> = ref('C4')
 
 const frequencies: Ref = ref([
   'C4',
