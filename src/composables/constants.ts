@@ -1,5 +1,7 @@
+export type Mode = Record<string, Record<string, number>>
+
 /** @pureIntonation @Limit5th */
-export const ji5LimitModesFreqRatios: Record<string, Record<string, number>> = {
+export const ji5LimitModesFreqRatios: Mode = {
   NaturalMajor: {
     Unison: 1,
     MajorSecond: 9 / 8,
@@ -23,7 +25,7 @@ export const ji5LimitModesFreqRatios: Record<string, Record<string, number>> = {
 }
 
 /** @pureIntonation @Limit7th */
-export const ji7LimitModesFreqRatios: Record<string, Record<string, number>> = {
+export const ji7LimitModesFreqRatios: Mode = {
   NaturalMajor: {
     Unison: 1,
     MajorSecond: 9 / 8,

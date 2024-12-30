@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount, type Ref } from 'vue';
+import { ref, computed, type Ref } from 'vue';
 import { useAudio } from '@/composables/useAudio'
+import { useKeys, EVENT_KEYS } from '@/composables/useKeys'
 import { C4, ji5LimitModesFreqRatios, ji7LimitModesFreqRatios } from '@/composables/constants'
 
 const pristine = ref(true)
@@ -24,51 +25,21 @@ const intervals: Ref = ref([
 ])
 
 const { initialize, play } = useAudio()
-
-const eventKeys = "QWERTYUI".split("").map(_ => `Key${_}`);
-const handleKeyDown = ({ code }: { code: string }) => {
-  const interval = definedInterval.value
-  const found = eventKeys.indexOf(code);
-  const isPlaying: number = notes.value.indexOf(code)
-  const toneKey = Object.keys(interval)[found];
-  const factor = interval[toneKey];
-
-  if (found > -1 && isPlaying == -1) {
-    notes.value.push(code)
-    play(C4 * factor)
-  }
-}
-const handleKeyUp = ({ code }: { code: string }) => {
-  clearKey(code)
-}
-
-const clearKey = (code: string) => {
-  const found = notes.value.indexOf(code)
-  if (found > -1) {
-    notes.value.splice(found, 1);
-  }
-}
-
-const handleStart = () => {
-  pristine.value = false
-  initialize()
-}
-
 const definedInterval = computed(() => {
   const localMode = modes.value[currentMode.value].value
   return localMode[currentInterval.value]
 
 })
-
-onMounted(() => {
-  document.addEventListener("keydown", handleKeyDown)
-  document.addEventListener("keyup", handleKeyUp)
+const { handleKeyDown, handleKeyUp } = useKeys({
+  definedInterval,
+  notes,
+  play
 })
 
-onBeforeUnmount(() => {
-  document.removeEventListener("keydown", handleKeyDown)
-  document.removeEventListener("keyup", handleKeyUp)
-});
+const handleStart = () => {
+  pristine.value = false
+  initialize()
+}
 
 </script>
 
@@ -85,7 +56,9 @@ onBeforeUnmount(() => {
         </select>
       </div>
       <div class="keyboard">
-        <div :class="['key', { active: notes.indexOf(key) > -1 }]" v-for="(key, i) in eventKeys" :key="key">
+        <div :class="['key', { active: notes.indexOf(key) > -1 }]" v-for="(key, i) in EVENT_KEYS" :key="key"
+          @mousedown="handleKeyDown({ code: key })" @mouseup="handleKeyUp({ code: key })"
+          @mouseleave="handleKeyUp({ code: key })">
           <span class="title">{{ Object.keys(definedInterval)[i] }}</span>
           <span class="details">{{ +definedInterval[Object.keys(definedInterval)[i]].toFixed(5)
             }}</span>
