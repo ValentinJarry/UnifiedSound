@@ -4,7 +4,7 @@ import { useAudio } from '@/composables/useAudio'
 import { useKeys, EVENT_KEYS } from '@/composables/useKeys'
 import { C4, ji5LimitModesFreqRatios, ji7LimitModesFreqRatios } from '@/composables/constants'
 
-const notes: Ref<string[]> = ref([])
+const keys: Ref<string[]> = ref([])
 const currentMode: Ref<number> = ref(0)
 const currentInterval: Ref<string> = ref('NaturalMajor')
 
@@ -32,7 +32,7 @@ const definedInterval = computed(() => {
 
 const { handleKeyDown, handleKeyUp } = useKeys({
   definedInterval,
-  notes,
+  keys,
   play
 })
 
@@ -50,7 +50,7 @@ const { handleKeyDown, handleKeyUp } = useKeys({
         </select>
       </div>
       <div class="keyboard">
-        <div :class="['key', { active: notes.indexOf(key) > -1 }]" v-for="(key, i) in EVENT_KEYS" :key="key"
+        <div :class="['key', { active: keys.indexOf(key) > -1 }]" v-for="(key, i) in EVENT_KEYS" :key="key"
           @mousedown="handleKeyDown({ code: key })" @mouseup="handleKeyUp({ code: key })"
           @mouseleave="handleKeyUp({ code: key })">
           <span class="title">{{ Object.keys(definedInterval)[i] }}</span>
@@ -95,14 +95,20 @@ button {
 .key {
   width: 120px;
   height: 120px;
-  background-color: #affec7;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  color: rgba(0, 0, 0, 0.25);
+  color: #090909;
   flex-direction: column;
   padding: 10px;
   font-size: 14px;
+  border-radius: 10px;
+  /* background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow: 12px 12px 24px #d9d9d9,
+    -12px -12px 24px #ffffff; */
+  background-color: #e8e8e8;
+  border: 1px solid #e8e8e8;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
 }
 
 .title {
@@ -111,11 +117,14 @@ button {
 }
 
 .details {
-  color: rgba(0, 0, 0, 0.75);
-
+  font-size: 12px;
 }
 
 .key.active {
-  background-color: #ffffff;
+  background: linear-gradient(145deg, #affec7, #e6e6e6);
+  border-color: #affec7;
+  /* box-shadow: 12px 12px 24px #d9d9d9,
+    -12px -12px 24px #ffffff; */
+  box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
 }
 </style>

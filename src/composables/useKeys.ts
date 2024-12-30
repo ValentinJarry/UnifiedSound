@@ -6,11 +6,11 @@ export const EVENT_KEYS = 'QWERTYUI'.split('').map((_) => `Key${_}`)
 type PlayFunction = (frequency: number) => void
 export const useKeys = ({
   definedInterval,
-  notes,
+  keys,
   play,
 }: {
   definedInterval: Ref<Mode>
-  notes: Ref<string[]>
+  keys: Ref<string[]>
   play: PlayFunction
 }) => {
   const handleKeyDown = ({ code }: { code: string }) => {
@@ -21,13 +21,13 @@ export const useKeys = ({
     const factor = Number(interval[toneKey])
 
     if (found > -1 && isPlaying == -1) {
-      notes.value.push(code)
+      keys.value.push(code)
       play(C4 * factor)
     }
   }
 
   const isDownKey = (code: string) => {
-    return notes.value.indexOf(code)
+    return keys.value.indexOf(code)
   }
 
   const handleKeyUp = ({ code }: { code: string }) => {
@@ -37,7 +37,7 @@ export const useKeys = ({
   const clearKey = (code: string) => {
     const found = isDownKey(code)
     if (found > -1) {
-      notes.value.splice(found, 1)
+      keys.value.splice(found, 1)
     }
   }
   onMounted(() => {
