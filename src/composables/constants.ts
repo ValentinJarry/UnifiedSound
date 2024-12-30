@@ -52,4 +52,7 @@ export const ji7LimitModesFreqRatios: Mode = {
   },
 }
 
-export const C4 = 261.63
+export const FREQUENCIES: Record<string, number> = {
+  C4: 261.63,
+  A4: 440,
+}

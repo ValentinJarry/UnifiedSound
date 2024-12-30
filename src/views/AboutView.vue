@@ -2,12 +2,17 @@
 import { ref, computed, type Ref } from 'vue';
 import { useAudio } from '@/composables/useAudio'
 import { useKeys, EVENT_KEYS } from '@/composables/useKeys'
-import { C4, ji5LimitModesFreqRatios, ji7LimitModesFreqRatios } from '@/composables/constants'
+import { FREQUENCIES, ji5LimitModesFreqRatios, ji7LimitModesFreqRatios } from '@/composables/constants'
 
 const keys: Ref<string[]> = ref([])
 const currentMode: Ref<number> = ref(0)
 const currentInterval: Ref<string> = ref('NaturalMajor')
+const currentFrequency: Ref<string> = ref('A4')
 
+const frequencies: Ref = ref([
+  'C4',
+  'A4'
+])
 const modes: Ref = ref([
   {
     label: "ji5LimitModesFreqRatios",
@@ -33,6 +38,7 @@ const definedInterval = computed(() => {
 const { handleKeyDown, handleKeyUp } = useKeys({
   definedInterval,
   keys,
+  frequency: currentFrequency,
   play
 })
 
@@ -42,6 +48,9 @@ const { handleKeyDown, handleKeyUp } = useKeys({
   <div class="about">
     <div class="room">
       <div class="controls">
+        <select v-model="currentFrequency">
+          <option v-for="(frequency) in frequencies" :key="frequency">{{ frequency }}</option>
+        </select>
         <select v-model="currentMode">
           <option v-for="({ label }, key) in modes" :value="key" :key="key">{{ label }}</option>
         </select>
@@ -56,7 +65,7 @@ const { handleKeyDown, handleKeyUp } = useKeys({
           <span class="title">{{ Object.keys(definedInterval)[i] }}</span>
           <span class="details">{{ +definedInterval[Object.keys(definedInterval)[i]].toFixed(5)
             }}</span>
-          <span class="details">{{ +(definedInterval[Object.keys(definedInterval)[i]] * C4).toFixed(5) }}</span>
+          <span class="details">{{ +(definedInterval[Object.keys(definedInterval)[i]] * FREQUENCIES[currentFrequency]).toFixed(5) }}</span>
         </div>
       </div>
     </div>
@@ -108,7 +117,7 @@ button {
     -12px -12px 24px #ffffff; */
   background-color: #e8e8e8;
   border: 1px solid #e8e8e8;
-  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+  box-shadow: 4px 4px 12px #d9d9d9, -6px -6px 12px #ffffff;
 }
 
 .title {

@@ -1,5 +1,5 @@
 import { onMounted, onBeforeUnmount, type Ref } from 'vue'
-import { C4, type Mode } from '@/composables/constants'
+import { FREQUENCIES, type Mode } from '@/composables/constants'
 
 export const EVENT_KEYS = 'QWERTYUI'.split('').map((_) => `Key${_}`)
 
@@ -7,10 +7,12 @@ type PlayFunction = (frequency: number) => void
 export const useKeys = ({
   definedInterval,
   keys,
+  frequency,
   play,
 }: {
   definedInterval: Ref<Mode>
   keys: Ref<string[]>
+  frequency: Ref<string>
   play: PlayFunction
 }) => {
   const handleKeyDown = ({ code }: { code: string }) => {
@@ -22,7 +24,7 @@ export const useKeys = ({
 
     if (found > -1 && isPlaying == -1) {
       keys.value.push(code)
-      play(C4 * factor)
+      play(FREQUENCIES[frequency.value] * factor)
     }
   }
 
