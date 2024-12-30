@@ -68,6 +68,11 @@ const { handleKeyDown, handleKeyUp } = useKeys({
           <span class="details">{{ +(definedInterval[Object.keys(definedInterval)[i]] * FREQUENCIES[currentFrequency]).toFixed(5) }}</span>
         </div>
       </div>
+      <div class="body">
+        <div class="main-key active">
+          Play
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -112,12 +117,35 @@ button {
   padding: 10px;
   font-size: 14px;
   border-radius: 10px;
-  /* background: linear-gradient(145deg, #ffffff, #e6e6e6);
-  box-shadow: 12px 12px 24px #d9d9d9,
-    -12px -12px 24px #ffffff; */
   background-color: #e8e8e8;
   border: 1px solid #e8e8e8;
   box-shadow: 4px 4px 12px #d9d9d9, -6px -6px 12px #ffffff;
+}
+.key.active {
+  background: linear-gradient(145deg, #affec7, #e6e6e6);
+  border-color: #affec7;
+  box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+}
+
+.main-key {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-direction: column;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid #fb702c;
+  box-shadow: 4px 4px 12px #d9d9d9, -6px -6px 12px #ffffff, #fb702c 2px 2px 10px 0px inset, #d42a02 -4px -4px 1px 0px inset;
+  background-color: #d42a02;
+}
+.main-key:active {
+  background: linear-gradient(145deg, #d42a02, red);
+  border-color: #d42a02;
+  box-shadow: inset 4px 4px 12px #ee2c00, inset -4px -4px 12px #ff6644;
 }
 
 .title {
@@ -127,13 +155,5 @@ button {
 
 .details {
   font-size: 12px;
-}
-
-.key.active {
-  background: linear-gradient(145deg, #affec7, #e6e6e6);
-  border-color: #affec7;
-  /* box-shadow: 12px 12px 24px #d9d9d9,
-    -12px -12px 24px #ffffff; */
-  box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
 }
 </style>
