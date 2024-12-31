@@ -16,7 +16,7 @@ export const JiReferenceAppendix: IntervalRatiosAppendix = Object.entries(
   {} as IntervalRatiosAppendix,
 )
 
-console.log({ JiReferenceAppendix }) // @Val -debug-
+console.debug({ JiReferenceAppendix }) // @Val -debug-
 
 /** @pureIntonation @Limit5th */
 export const ji5LimitModesFreqRatios: PureModes = {
@@ -43,7 +43,7 @@ export const ji5LimitModesFreqRatios: PureModes = {
   },
 }
 
-console.log({ ji5LimitModesFreqRatios }) // @Val -debug-
+console.debug({ ji5LimitModesFreqRatios }) // @Val -debug-
 
 /** @pureIntonation @Limit7th */
 export const ji7LimitModesFreqRatios: PureModes = {
@@ -73,7 +73,7 @@ export const ji7LimitModesFreqRatios: PureModes = {
   },
 }
 
-console.log({ ji7LimitModesFreqRatios }) // @Val -debug-
+console.debug({ ji7LimitModesFreqRatios }) // @Val -debug-
 
 /** @TET_12 */
 export const tet12ModesFreqRatios: TemperedModes = {
@@ -127,7 +127,7 @@ export const tet12ModesFreqRatios: TemperedModes = {
   },
 }
 
-console.log({ tet12ModesFreqRatios }) // @Val -debug-
+console.debug({ tet12ModesFreqRatios }) // @Val -debug-
 
 export const FREQUENCIES: Record<string, number> = {
   // Cn1_Stanard_Concert: 261.63 / 32,

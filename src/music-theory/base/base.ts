@@ -75,7 +75,7 @@ export type HarmRatio = number
 
 // PURE MODE(S)
 
-export type IntervalRatios = Record<PIN, number>
+export type IntervalRatiosAppendix = Record<PIN, number>
 
 export type PureMode = PartialRecord<PIN, number>
 export type PureModes = PartialRecord<ModeName, PureMode>
