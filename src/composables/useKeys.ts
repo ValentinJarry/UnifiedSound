@@ -1,5 +1,6 @@
 import { onMounted, onBeforeUnmount, type Ref } from 'vue'
-import { FREQUENCIES, type Mode } from '@/composables/constants'
+import { FREQUENCIES } from '@/composables/constants'
+import { PIN, type PureMode, type TemperedMode } from '@/music-theory/base/base'
 
 export const EVENT_KEYS = 'QWERTYUI'.split('').map((_) => `Key${_}`)
 
@@ -10,7 +11,7 @@ export const useKeys = ({
   frequency,
   play,
 }: {
-  definedInterval: Ref<Mode>
+  definedInterval: Ref<PureMode | TemperedMode>
   keys: Ref<string[]>
   frequency: Ref<string>
   play: PlayFunction
@@ -19,7 +20,7 @@ export const useKeys = ({
     const interval = definedInterval.value
     const found = EVENT_KEYS.indexOf(code)
     const isPlaying = isDownKey(code)
-    const toneKey = Object.keys(interval)[found]
+    const toneKey = Object.keys(interval)[found] as PIN
     const factor = Number(interval[toneKey])
 
     if (found > -1 && isPlaying == -1) {

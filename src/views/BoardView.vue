@@ -1,32 +1,42 @@
 <script setup lang="ts">
-import { ref, computed, type Ref } from 'vue';
+import { ref, computed, type Ref } from 'vue'
 import { useAudio } from '@/composables/useAudio'
 import { useKeys, EVENT_KEYS } from '@/composables/useKeys'
-import { FREQUENCIES, ji5LimitModesFreqRatios, ji7LimitModesFreqRatios } from '@/composables/constants'
+import {
+  FREQUENCIES,
+  ji5LimitModesFreqRatios,
+  ji7LimitModesFreqRatios,
+  JiReferenceAppendix,
+  tet12ModesFreqRatios,
+} from '@/composables/constants'
+import { ModeName } from '@/music-theory/base/base'
 
 const keys: Ref<string[]> = ref([])
 const currentMode: Ref<number> = ref(0)
-const currentInterval: Ref<string> = ref('NaturalMajor')
-const currentFrequency: Ref<string> = ref('C4')
+const currentInterval: Ref<string> = ref(Object.keys(ModeName)[0])
+const currentFrequency: Ref<string> = ref('A1_Standard_Concert')
 
-const frequencies: Ref = ref([
-  'C4',
-  'A4'
-])
+const frequencies: Ref = ref(Object.keys(FREQUENCIES))
 const modes: Ref = ref([
   {
-    label: "ji5LimitModesFreqRatios",
+    label: 'Just Intonation 5-limit',
     value: ji5LimitModesFreqRatios,
   },
   {
-    label: "ji7LimitModesFreqRatio",
-    value: ji7LimitModesFreqRatios
+    label: 'Just Intonation 7-limit',
+    value: ji7LimitModesFreqRatios,
+  },
+  // TODO @Val [NEXT] [WEAEWEWQE] Fix issue with extra number of keys
+  // {
+  //   label: "Just Intonation All Intervals",
+  //   value: JiReferenceAppendix
+  // },
+  {
+    label: '12-TET Equal Temperament',
+    value: tet12ModesFreqRatios,
   },
 ])
-const intervals: Ref = ref([
-  'NaturalMajor',
-  'NaturalMinor'
-])
+const intervals: Ref = ref(Object.keys(ModeName))
 
 const { play } = useAudio()
 
