@@ -25,7 +25,7 @@ export enum NonEqualTemperedIntonationsUUID {
  */
 export enum JustIntonationsUUID {
   JustIntonation = '@pure JustIntonation',
-  // QUESTION: Is there other propositions from other cultures ?
+  // QUESTION: Consider breaking down into NLimit tuning sub-systems for JI.
 }
 
 /**
@@ -141,15 +141,15 @@ type _SuppAll_TemperedIntervalsUUID =
 export type ExtendedPureIntervalsUUID = BasePureIntervalsUUID | PureMicrotonalIntervalsUUID
 
 /** @TemperedIntervals */
-export type TemperedIntervalsUUID = EqTemperedIntervalsUUID | NeqTemeperedIntervalsUUID
+export type TemperedIntervalsUUID = EqTemperedIntervalsUUID | NeqTemperedIntervalsUUID
 
-/** @EqTemperedIntervals */
+/** @EqualTemperedIntervals */
 export type EqTemperedIntervalsUUID =
   | EqTemperedDiatonicIntervalsUUID
   | EqTemperedMicrotonalIntervalsUUID
 
-/** @NeqTemperedIntervals */
-export type NeqTemeperedIntervalsUUID =
+/** @NonEqualTemperedIntervals */
+export type NeqTemperedIntervalsUUID =
   | NeqTemperedDiatonicIntervalsUUID
   | NeqTemperedMicrotonalIntervalsUUID
 

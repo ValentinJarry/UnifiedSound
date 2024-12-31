@@ -33,11 +33,15 @@ interface _BaseMode {
 /**
  * @ModelRoot
  * @Pure
+ * @NonOctavian TODO @Val [QUESTION] [OUBQEWAS] ROI to decline into octavian and non-ocavian ?
  * @Descritpion Represents a musical mode with specific intervals.
  */
 export interface PureMode extends _BaseMode {
   /** @Important */
   isFromPureIntonation: true
+  /** @Important */
+  isOctavian: false
+
   /**
    * @JustAndPure
    * @Parent [BEQOWEJAS] UUID of the intonation most associated with this mode, *necessary* to compute `Mode.intervals`.
@@ -54,14 +58,16 @@ export interface PureMode extends _BaseMode {
 }
 
 /**
- * @TemperedOctavian
  * @ModelRoot
- * @Descritpion
- * Represents a musical mode with specific intervals.
+ * @Tempered
+ * @Octavian TODO @Val [QUESTION] [OUBQEWAS] ROI to decline into octavian and non-ocavian ?
+ * @Descritpion Represents a musical mode with specific intervals.
  */
 export interface TemperedMode extends _BaseMode {
   /** @Important */
   isFromPureIntonation: false
+  /** @Important */
+  isOctavian: true
 
   /**
    * @Tempered
@@ -78,6 +84,14 @@ export interface TemperedMode extends _BaseMode {
   diatonicSteps: Record<DiatonicStepsUUID, DiatonicInterval>
 
   scales: TemperedScales
+}
+
+export interface EqTemperedMode extends TemperedMode { // TODO -erase- the extend
+  // TODO @Val [NEXT] [NEBQWPEKQ] [QBEIASEN] Differentiate from Equal and Non-Equal Tempered Modes.
+}
+
+export interface NeqTemperedMode extends TemperedMode { // TODO -erase- the extend
+  // TODO @Val [NEXT] [NEBQWPEKQ] [QBEIASEN] Differentiate from Equal and Non-Equal Tempered Modes.
 }
 
 // Mode Intervals --------------------------------------------------------------------
@@ -114,10 +128,10 @@ export interface TemperedModeInterval {
   errorCentsFromReference: number
 }
 
-export interface EqTemperedModeInterval {
-  // TODO @Val [NEXT] [NEBQWPEKQ] Differentiate from Equal and Non-Equal Tempered Modes.
+export interface EqTemperedModeInterval extends TemperedModeInterval {// TODO -erase- the extend
+  // TODO @Val [NEXT] [NEBQWPEKQ] [QBEIASEN] Differentiate from Equal and Non-Equal Tempered Modes.
 }
 
-export interface NeqTemperedModeInterval {
-  // TODO @Val [NEXT] [NEBQWPEKQ] Differentiate from Equal and Non-Equal Tempered Modes.
+export interface NeqTemperedModeInterval extends TemperedModeInterval { // TODO -erase- the extend
+  // TODO @Val [NEXT] [NEBQWPEKQ] [QBEIASEN] Differentiate from Equal and Non-Equal Tempered Modes.
 }

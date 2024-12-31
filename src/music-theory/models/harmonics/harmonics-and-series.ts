@@ -39,5 +39,6 @@ export interface TemperedHarmonic extends _BaseHarmonic {
   temperedFreqRatioNotation: HarmRatioNotation
 }
 
-// TODO @Val [NOW] NonOctavianEqualTemperedHarmonic, OctavianEqualTemperedHarmonic
-// TODO @Val [NOW] NonOctavianNonEqualTemperedHarmonic, OctavianNonEqualTemperedHarmonic
+// TODO @Val [QUESTION] [OUBQEWAS] ROI to decline into octavian and non-ocavian ?
+// TODO @Val [QUESTION] NonOctavianEqualTemperedHarmonic, OctavianEqualTemperedHarmonic
+// TODO @Val [QUESTION] NonOctavianNonEqualTemperedHarmonic, OctavianNonEqualTemperedHarmonic

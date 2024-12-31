@@ -167,3 +167,5 @@ interface NonEqualTemperedSynthethicOctavianChroma extends SyntheticOctavianChro
 // - EqualTemperedIntonations: imple tempering that make them non-natural, however, it doesn't means their are either octavian or non-octavian.
 // - EqualTemperedOctavianIntonations: imple tempering that make them non-natural, that are also octavia. These are the practical [5-96]-TET equal temperaments.
 // - EqualTemperedNonOctavianIntonations: imple tempering that make them non-natural, that are also non-octavian. These are probably some of the traditional temperament that pre-date the equal temperament.
+
+// TODO @Val [QUESTION] [OUBQEWAS] ROI to decline into octavian and non-ocavian ?
