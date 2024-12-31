@@ -43,3 +43,7 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+### Relevant Libraries
+
+- Built-in JS [AudioContext](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
